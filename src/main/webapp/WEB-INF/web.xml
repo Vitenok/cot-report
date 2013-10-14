@@ -13,21 +13,30 @@
  
 	<servlet-mapping>
 		<servlet-name>mvc-dispatcher</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/rest/*</url-pattern> 
 	</servlet-mapping>
  
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
 	</context-param>
+	
+	<context-param>
+    	<param-name>log4jConfigLocation</param-name>
+    	<param-value>/WEB-INF/log4j.properties</param-value>
+	</context-param>
  
 	<listener>
 		<listener-class>
-			org.springframework.web.context.ContextLoaderListener
-        </listener-class>
+			org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	
+	<listener id="MyLogger">
+    	<listener-class>
+    		org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener> 
+	
 	<welcome-file-list>
-  		<welcome-file>/</welcome-file>
+  		<welcome-file>index.html</welcome-file>
     </welcome-file-list>
 </web-app>

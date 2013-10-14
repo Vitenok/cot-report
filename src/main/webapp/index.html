@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app ng-controller="Controller">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>CoT Report</title>
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script src="js/client.js"></script>
+
+<script type="text/javascript">
+	google.load("visualization", "1", {
+		packages : [ "corechart" ]
+	});
+</script>
+
+<style type="text/css">
+#chart_div {
+	height: 550px;
+}
+</style>
+</head>
+
+<body>
+	<div class="container">
+		<nav class="navbar navbar-default" role="navigation"> <!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<a class="navbar-brand">CoT Report</a>
+		</div>
+		</nav>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="well">
+					<div class="row">
+						<div class="col-md-6">
+							<h5>Select nonfinancial instrument</h5>
+							<select ng-model="listNonFinInstrument" ng-init="listNonFinInstrument = listNonFinInstruments[0]" ng-options="ni for ni in listNonFinInstruments" class="form-control" ng-change="drawInstrumentChart()">
+							</select>
+						</div>
+					</div>
+					<div id="chart_div"></div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

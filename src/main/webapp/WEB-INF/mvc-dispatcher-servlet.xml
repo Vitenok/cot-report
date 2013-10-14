@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:batch="http://www.springframework.org/schema/batch" xmlns:task="http://www.springframework.org/schema/task" xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
+<beans xmlns="http://www.springframework.org/schema/beans"
+ 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:cache="http://www.springframework.org/schema/cache" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:batch="http://www.springframework.org/schema/batch" 
+	xmlns:task="http://www.springframework.org/schema/task" 
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
@@ -10,11 +18,18 @@ http://www.springframework.org/schema/cache http://www.springframework.org/schem
 http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
 http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd
 http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+
 ">
+<!--   -->
 	<context:component-scan base-package="com.iti.cftc.cot" />
+
 
 	<mvc:annotation-driven />
 	<cache:annotation-driven />
+	
+	<aop:aspectj-autoproxy />
+		
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -96,14 +111,8 @@ http://www.springframework.org/schema/jdbc http://www.springframework.org/schema
 		<jdbc:script location="classpath:org/springframework/batch/core/schema-drop-mysql.sql" />
 		<jdbc:script location="classpath:org/springframework/batch/core/schema-mysql.sql" />
 	</jdbc:initialize-database>
-	
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix">
-			<value>/WEB-INF/pages/</value>
-		</property>
-		<property name="suffix">
-			<value>.html</value>
-		</property>
-	</bean>
+
+	<!-- Logging aspect -->
+	<bean id="loggingAspect" class="com.iti.cftc.cot.aspect.LoggingAspect" />
+
 </beans>
