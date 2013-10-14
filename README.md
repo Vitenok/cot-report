@@ -2,7 +2,8 @@ cot-report
 
 Study project to practice Spring framework. 
 Application reads Commitments and Traders report by URL once per week when it is published,
-parsers, analyses it's content and builds graphics for different non-financial instruments, which are present in the report.
+parses, analyses it's content and builds graphics for different non-financial instruments, 
+which are present in the report.
 
 Technologies stack: 
 DB: MySQL 5, Servlet Container: Jetty. 
